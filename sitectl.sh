@@ -101,8 +101,8 @@ fi
 # Run it!
 #
 
-# Color ssettings
-if [ "$COLOR" != "color"  ] ; then
+# Color settings
+if [ "$COLOR" != "yes"  ] ; then
   disabled=""
   enabled=""
   endcolor=""
