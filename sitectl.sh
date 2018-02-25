@@ -109,6 +109,7 @@ if [ "$COLOR" != "yes"  ] ; then
   resetcolor=""
 fi
 
+cd $SITECONF
 while true; do
 
   entirelist=""
@@ -135,7 +136,7 @@ while true; do
 "
   read selection
   
-  if [ "$selection" = "X" -o "$nums" == "x" ] ; then
+  if [ "$selection" = "X" -o "$selection" = "x" ] ; then
 
     exit
 
