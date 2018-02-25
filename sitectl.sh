@@ -56,6 +56,24 @@ Help:
 
 }
 
+toggle_state() {
+
+  isdisabled="`echo $1 | grep 'disabled' `"
+
+  if [ -n "$isdisabled" ] ; then
+    conf="`echo $1| sed 's/\.disabled//g'`"
+    mv $1 $conf
+    sitename="`echo $conf| sed 's/\.conf//g'`"
+    echo -e "Enabled $sitename\n";
+  else
+    mv $1 $1.disabled
+    sitename="`echo $1| sed 's/\.conf//g'`"
+    echo -e "Disabled $sitename\n";
+  fi
+
+
+}
+
 export COLOR='yes'
 
 #
@@ -109,10 +127,10 @@ if [ "$COLOR" != "yes"  ] ; then
   resetcolor=""
 fi
 
+>$TMPFILE
 cd $SITECONF
 while true; do
-
-  entirelist=""
+  tput clear
   idx=1
   echo -e "\n\n"
   for i in `ls *.{conf,disabled} `; do 
@@ -123,36 +141,42 @@ while true; do
     else 
       echo -e "${enabled}${newi}${endcolor}"
     fi
-    entirelist="$entirelist\n$newi"
+    echo "$newi" >> $TMPFILE
+
     idx=`expr $idx + 1`
   done
-  echo -e "$resetcolor\n"
-  
-  echo -e "  X  Quit
-   disableall  Disable All Sites 
-   enablealli  Enable All Sites
+  echo -e "$resetcolor
+ enablealli  Enable  All Sites
+ disableall  Disable All Sites 
 
-    Select a number(s) to toggle site status 
+  X  Exit
+
+    Select the number of a site to toggle its status 
 "
   read selection
   
   if [ "$selection" = "X" -o "$selection" = "x" ] ; then
-
+    rm $TMPFILE
     exit
 
   elif [ "$selection" = "disableall" ] ; then
-  
-    echo "disableall\n"
+
+    for i in *.conf; do
+      toggle_state $i 
+    done
   
   elif [ "$selection" = "enableall" ] ; then
   
-    echo "enableall\n"
+    for i in *.disabled; do
+      toggle_state $i 
+    done
   
   else
-    toggleitem=`echo $entirelist| grep " $selection  "`
+
+    toggleitem="` grep \" $selection  \" $TMPFILE | cut -c6- `"
   
-    echo -e "$toggleitem\n"
-  
+     toggle_state $toggleitem 
+
   fi
 
 done
