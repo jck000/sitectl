@@ -4,8 +4,8 @@
 # Author: Jack Bilemjian jck000@gmail.com
 #
 # Description:
-#    This is an interactive script used to enable/disable apache sites.  It will simply
-#    move configuration files to .disabled to disable a site and will remove the 
+#    This is an interactive script used to enable/disable Apache web sites.  It will 
+#    simply move configuration files to .disabled to disable a site and will remove the 
 #    .disabled extension to enable it.
 #
 # Usage: 

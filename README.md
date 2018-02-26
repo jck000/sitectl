@@ -1,7 +1,7 @@
 # sitectl
 
 This is a simple script to manage Apache web sites.  It allows you to quickly enable 
-  or disable a web site by simply moving the .conf file to .conf.disable
+  or disable a web site by simply moving the .conf file to .conf.disable or .conf.disable to .conf.  You must restart Apache in order for tyour changes to take effect.
 
 ## Installation
 
@@ -29,4 +29,13 @@ To set screen color options or change paths for tmp file and location of configu
 
 
 *NOTE*:  This script simply moves the file(s), you MUST restart Apache in order for your changes to take effect.
+
+
+### Support or Suggestions
+
+Please create a ticket if you have any questions or you find problems with this script at https://github.com/jck000/sitectl/issues
+
+
+
+
 
