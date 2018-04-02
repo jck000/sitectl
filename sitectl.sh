@@ -5,11 +5,11 @@
 #
 # Description:
 #    This is an interactive script used to enable/disable Apache web sites.  It will 
-#    simply move configuration files to .disabled to disable a site and will remove the 
-#    .disabled extension to enable it.
+#    simply move site configuration files (site.conf) to site.conf.disabled to disable 
+#    a site and will remove the .disabled extension to enable it.
 #
 # Usage: 
-#    sitectl.sh 
+#    sitectl
 #
 
 #
@@ -127,13 +127,13 @@ if [ "$COLOR" != "yes"  ] ; then
   resetcolor=""
 fi
 
->$TMPFILE
+> $TMPFILE
 cd $SITECONF
 while true; do
   tput clear
   idx=1
   echo -e "\n\n"
-  for i in `ls *.{conf,disabled} `; do 
+  for i in `ls | egrep '\.(conf|disabled)' `; do 
     status=`echo $i| grep 'disabled'`
     newi=`printf "%3u  %s\n" $idx $i`
     if [ -n "$status" ] ; then
@@ -180,3 +180,5 @@ while true; do
   fi
 
 done
+
+
