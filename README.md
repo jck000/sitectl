@@ -30,6 +30,11 @@ To set screen color options or change paths for tmp file and location of configu
 
 *NOTE*:  This script simply moves the file(s), you MUST restart Apache in order for your changes to take effect.
 
+### TODO
+* Add Maintenance page on disabled sites
+* Add restart apache
+* Add nginx support
+
 
 ### Support or Suggestions
 
