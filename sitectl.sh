@@ -146,7 +146,7 @@ while true; do
     idx=`expr $idx + 1`
   done
   echo -e "$resetcolor
- enablealli  Enable  All Sites
+ enableall   Enable  All Sites
  disableall  Disable All Sites 
 
   X  Exit
